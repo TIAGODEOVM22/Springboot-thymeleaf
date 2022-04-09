@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+	  <!--Import Google Icon Font-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="/materialize/css/materialize.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="/materialize.min.css"  media="screen,projection"/>
+</head>
+<body>
+	<form action="salvarPessoa" method="POST" th:object="${pessoaobj}"><!-- pessoaobj essa variavel vem do controller atualizar -->
+	<!-- action="salvarPessoa" é o mesmo que foi mapeado no POSTMAPPING-->
+	
+	<label>ID</label>
+	<input name="id" th:field="*{id}" readonly="readonly">
+	
+	<label>Nome</label>
+	<input name="nome" th:field="*{nome}">
+	
+	<label>Sobrenome</label>
+	<input name="sobrenome" th:field="*{sobrenome}">
+	
+	<label>Idade</label>
+	<input name="idade" th:field="*{idade}">
+	
+	<input class="waves-effect waves-light btn" type="submit" value="salvar">
+	
+	</form>
+	<!-- /listaPessoas referente ao metodo da controller -->
+	<a href="/listaPessoas">Listar Pessoas</a>
+	
+	<table>
+		<tr th:each = "pessoa : ${pessoas}"><!-- pessoas vem do BD -->
+			<td th:text = "${pessoa.id}"></td>
+			<td th:text = "${pessoa.nome}"></td>
+			<td th:text = "${pessoa.sobrenome}"></td>
+			<td><a th:href="@{/editarPessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
+		</tr>
+	</table>
+	
+	  <!--import JavaScript materialize-->
+	  <script type="text/javascript" src="/materialize/js/materialize.js"></script>
+      <script type="text/javascript" src="/materialize/js/materialize.min.js"></script>
+      
+      
+      
+</body>
+</html>
+

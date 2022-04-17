@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="ISO-8859-1">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 	  <!--Import Google Icon Font-->
       <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
@@ -11,7 +11,7 @@
 </head>
 <body>
 	<form action="salvarPessoa" method="POST" th:object="${pessoaobj}"><!-- pessoaobj essa variavel vem do controller atualizar -->
-	<!-- action="salvarPessoa" � o mesmo que foi mapeado no POSTMAPPING-->
+	<!-- action="salvarPessoa" é o mesmo que foi mapeado no POSTMAPPING-->
 	
 	<label>ID</label>
 	<input name="id" th:field="*{id}" readonly="readonly">
@@ -27,16 +27,48 @@
 	
 	<input class="waves-effect waves-light btn" type="submit" value="salvar">
 	
+	<br/>
+	<br/>
+	
 	</form>
 	<!-- /listaPessoas referente ao metodo da controller -->
 	<a href="/listaPessoas">Listar Pessoas</a>
+	<br/>
+	<br/>
+		<!-- FORMULARIO DE PEQUISA POR NOME -->
+		<form action="pesquisaPessoa" method="post">
+		<label>PESQUISAR POR NOME:</label>
+		<input name="nomePesquisa">
+		<input class="waves-effect waves-light btn" type="submit" value="buscar">
+		</form>
 	
+	<br/>
+	<br/>
 	<table>
+	<thead>
+				<tr>
+					<th>ID</th>
+					<th>Nome</th>
+					<th>Sobrenome</th>
+					<th>Idade</th>
+					<th>EDITAR</th>
+					<th>EXCLUIR</th>
+					
+				</tr>
+			</thead>
+			
+			<!--  th:each é um FOR, "pessoa é objeto e ${pessoa} é a lista
+			então para cada pessoa da lista ele pega o id,nome, sobrenome, idade -->
+			
 		<tr th:each = "pessoa : ${pessoas}"><!-- pessoas vem do BD -->
 			<td th:text = "${pessoa.id}"></td>
 			<td th:text = "${pessoa.nome}"></td>
 			<td th:text = "${pessoa.sobrenome}"></td>
+			<td th:text = "${pessoa.idade}"></td>
 			<td><a th:href="@{/editarPessoa/{idpessoa}(idpessoa=${pessoa.id})}">Editar</a></td>
+			<td><a th:href="@{/excluirPessoa/{idpessoa}(idpessoa=${pessoa.id})}">Excluir</a></td>
+					<!--@{/excluirPessoa/ é a url que recebe como parametro o {idpessoa}  -->
+					<!-- e o (idpessoa=$ vai ser o valor do Objeto que esta na linha -->
 		</tr>
 	</table>
 	

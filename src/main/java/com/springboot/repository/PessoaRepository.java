@@ -14,7 +14,7 @@ public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
 	public PessoaRepository findByNome(String Nome);
 	
-	/*@query do JPARepository
+	/*@query do JPA Repository
 	 * dentro escrevemos nosso JPQL
 	 * %?1% pega o primeiro parametro, no nosso o nome*/
 	@Query("select p from Pessoa p where p.nome like %?1%")

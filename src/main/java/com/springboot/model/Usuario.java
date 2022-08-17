@@ -22,9 +22,6 @@ public class Usuario implements UserDetails {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	
-	
-	
 	private Long id;
 	
 	private String login;
@@ -32,8 +29,8 @@ public class Usuario implements UserDetails {
 
 	/*Um usuario pode ter muitas funções no sistema*/
 	@OneToMany(fetch = FetchType.EAGER)
-	/*cria uma terceira tabela usuaios_role*/
-	@JoinTable(name = "usuaios_role",
+	/*cria uma terceira tabela usuarios_role*/
+	@JoinTable(name = "usuarios_role",
 			joinColumns = @JoinColumn(name = "usuario_id",
 			referencedColumnName = "id",
 			table = "usuario"), /*referencia ID da tabela usuario*/

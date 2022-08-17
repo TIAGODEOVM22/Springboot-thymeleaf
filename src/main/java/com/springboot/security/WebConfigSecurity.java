@@ -24,7 +24,8 @@ public class WebConfigSecurity extends WebSecurityConfigurerAdapter {
 	@Override //configura as solicitações de acesso por http
 	protected void configure(HttpSecurity http) throws Exception {
 	
-		http.csrf().disable()//desabilita config padrão de memória do spring
+		http.csrf()
+		.disable()//desabilita config padrão de memória do spring
 		.authorizeRequests()//restringe acessos
 		.antMatchers(HttpMethod.GET, "/").permitAll()//qualquer user acessa
 		.antMatchers(HttpMethod.GET, "/cadastroPessoa").hasAnyRole("ADMIN")//SÓ ADMIN ACESSA

@@ -18,14 +18,14 @@ public class ImplementacaoUserDetailsService implements UserDetailsService{
 	@Autowired
 	private UsuarioRepository usuarioRepository;
 	
-	@Override
+	@Override /*essa interface tem apenas esse metodo*/
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		Usuario usuario = usuarioRepository.findUserByLogin(username);
 		
 		if(usuario == null) {
 			throw new UsernameNotFoundException("Usúario não encontrado");
 		}
-		
+		/*new User é um objeto do spring*/
 		return new User(usuario.getLogin(), usuario.getPassword(),
 				usuario.isEnabled(), true, true, true,
 				usuario.getAuthorities());/*autoridades que criamos na tabela*/
